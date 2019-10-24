@@ -1,0 +1,30 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: simplewebapp
+  namespace: test
+  annotations:
+    fluxcd.io/automated: "true"
+    filter.fluxcd.io/chart-image: glob:production-*
+spec:
+  releaseName: simplewebapp
+  chart:
+    git: ssh://git@github.com/pcherednichenko/kubernetesconf
+    ref: master
+    path: charts/simplewebapp
+  values:
+    image:
+      repository: gcr.io/test-project-266218/github.com/pcherednichenko/simplewebapp
+      tag: "production-70dc5d2"
+    replicaCount: 1
+    service:
+      port: 80
+    resources:
+      requests:
+        cpu: "200m"
+        memory: "20Mi"
+      limits:
+        cpu: "400m"
+        memory: "64Mi"
+
