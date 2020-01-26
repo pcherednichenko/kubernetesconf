@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: gcr.io/test-project-266218/github.com/pcherednichenko/simplewebapp
-      tag: "production-70dc5d2"
+      tag: "production-24d7843"
     replicaCount: 1
     service:
       port: 80
